@@ -14,11 +14,24 @@
 }
 
 @media only screen and (max-width: 600px) {
+    .card-container{
+        padding: 0px!important;
+    }
     .productCart-image{
-        width: 60px!important;
+        width: 50px!important;
         height: 90px!important;
+        padding: 0px!important;
     }
     .productCart-text{
-        font-size: 15px;
+        font-size: 15px!important;
+    }
+
+    .cart-button{
+        width: 30px!important;
+        padding: 0px!important;
+    }
+    .cart-quantity{
+        font-size: 12px;
+        padding: 0px;
     }
   }

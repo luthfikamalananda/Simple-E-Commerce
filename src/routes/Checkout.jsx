@@ -53,9 +53,9 @@ export default function Checkout() {
                                     <th scope="row"><img src={data.image} alt="Product Image" className='product-images'/></th>
                                     <td>{data.title}</td>
                                     <td className='text-center'>{data.price}</td>
-                                    <td className='text-center'>{data.quantity > 1 ? <button onClick={() => {btnSubtractQuantityHandler(data.id)}}>-</button> : ''} {data.quantity} <button onClick={() => {btnAddQuantityHandler(data.id)}}>+</button></td>
-                                    <td className='text-center'>{data.quantity * data.price}</td>
-                                    <td className='text-center' onClick={() => btnRemoveHandler(data.id)}>X</td>
+                                    <td className='text-center fw-bold'>{data.quantity > 1 ? <button className='btn btn-light' onClick={() => {btnSubtractQuantityHandler(data.id)}}>-</button> : ''} {data.quantity} <button className='btn btn-light' onClick={() => {btnAddQuantityHandler(data.id)}}>+</button></td>
+                                    <td className='text-center'>${data.quantity * data.price}</td>
+                                    <td className='text-center' onClick={() => btnRemoveHandler(data.id)}><button className='btn btn-danger'>X</button></td>
                                 </tr>
                             )}
                         </tbody>
