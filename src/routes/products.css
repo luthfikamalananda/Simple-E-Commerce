@@ -1,0 +1,90 @@
+main{
+    all: none;
+}
+
+#mainProducts{
+    padding: 0;
+    display: block;
+}
+
+.carousel{
+    height: 50px;
+}
+
+.carousel-img{
+    height: 500px!important;
+    object-fit: cover;
+}
+
+#list-product-text{
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.ListProduct{
+    padding: 0 150px 20px;
+}
+
+.card-img-top{
+    object-fit: contain;
+    height: 300px;
+}
+
+.card-title-container{
+    width:100%;
+    height: 75px;
+    white-space: normal;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.card-title{
+    font-size: 1.50rem;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin-bottom: -10px;
+}
+
+.card-text-container{
+    width:100%;
+    height: 70px;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.list-group-item{
+    padding: 10px 0px 0px 0px;
+}
+
+.card-details{
+    display: flex;
+}
+
+.list-group{
+    display: flex;
+    width: 100%;
+}
+
+.btn-add-cart{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+@media only screen and (max-width: 1024px) {
+    .ListProduct{
+        padding: 0 50px 20px;
+    }
+  }

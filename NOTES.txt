@@ -1,0 +1,19 @@
+NOTES
+Tools used ; 
+1. ReactJS with Vite
+2. MUI Core / Material UI
+   - Snackbar
+   - Alert
+3. React Router DOM
+   - loader
+4. CoreUI 
+   - Navbar, Offcanvas
+   - 
+
+
+
+
+--- KODE CART SUSAH BANGET. BELAJAR LAGI, PARAMETER SPREAD ---
+--- STATES ADALAH READ ONLY, KALAO MAU GANTI TAMPUNG DULU KE VARIABEL TERUS DI SET ---
+--- BELAJAR PENGGANTI BOOTSTRAP (MATERIA UI) ---
+

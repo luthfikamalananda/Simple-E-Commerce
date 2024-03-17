@@ -1,0 +1,14 @@
+.product-images{
+    max-width: 60px;
+    max-height: 60px;
+    min-height: 60px;
+}
+
+.table{
+    
+}
+
+.product-image-container{
+    width: 100%;
+    max-width: 200px;
+}
