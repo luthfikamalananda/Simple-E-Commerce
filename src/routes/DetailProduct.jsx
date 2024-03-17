@@ -4,17 +4,21 @@ import ReactImg from '../assets/react.png';
 import './detailproduct.css';
 import { useContext, useEffect, useState } from "react";
 import { Rating } from "@mui/material";
-import { Link, useLoaderData, useNavigation, } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useNavigation, } from "react-router-dom";
 import { CartContext } from "../context/CartProvider";
+import { AuthContext } from "../context/AuthProvider";
 
 export default function DetailProduct() {
   const productData = useLoaderData();
 
   const { state } = useNavigation();
+  const navigate = useNavigate();
 
   // Context
   const data = useContext(CartContext);
   const { cart } = data // Destruct
+
+  const auth = useContext(AuthContext)
 
   useEffect(() => {
     if (auth.checkLogin() === false) {

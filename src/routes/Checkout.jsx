@@ -3,11 +3,15 @@ import Header from '../components/header'
 import './checkout.css'
 import { Padding } from '@mui/icons-material';
 import { CartContext } from '../context/CartProvider';
+import { AuthContext } from '../context/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 export default function Checkout() {
+    const navigate = useNavigate();
 
     // Context
     const data = useContext(CartContext); 
+    const auth = useContext(AuthContext)
 
     const btnRemoveHandler = (id) => {
         data.removeFromCart(id);
@@ -20,6 +24,12 @@ export default function Checkout() {
     const btnSubtractQuantityHandler = (id) => {
         data.subtractQuantityCart(id)
     }
+
+    useEffect(() => {
+        if (auth.checkLogin() === false) {
+          navigate('/login')
+        } 
+      },[])
 
     return (
         <>
