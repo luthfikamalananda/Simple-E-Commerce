@@ -2,6 +2,7 @@ import { useState, Fragment, useContext, useEffect } from 'react'
 import reactLogo from '../assets/react.svg'
 import style from './login.module.css';
 
+
 import Alert from '@mui/material/Alert';
 import { Button, Snackbar, useColorScheme } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -63,7 +64,9 @@ function Login() {
   }
 
   return (
+    
     <div className={style.mainContainer}>
+      
       <div>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className={style.logo} alt="React logo" />
@@ -73,29 +76,35 @@ function Login() {
         <div>Login</div>
       </div>
       <br />
-      <div className={style.inputContainer}>
+      <div className={`${style.inputContainer} row justify-content-center align-self-center`}>
+        <div className="col">
         <input
           value={username}
           placeholder="Enter your username here"
           onChange={(ev) => setUsername(ev.target.value)}
-          className={style.inputBox}
+          className={`${style.inputBox} from-control form-control-lg`}
         />
         <label className={style.errorLabel}></label>
+        </div>
       </div>
       <br />
-      <div className={style.inputContainer}>
+      <div className={`${style.inputContainer} row justify-content-center align-self-center`}>
+        <div className="col">
         <input
           value={password}
           placeholder="Enter your password here"
           onChange={(ev) => setPassword(ev.target.value)}
-          className={style.inputBox}
+          className={`${style.inputBox} from-control form-control-lg `}
         />
         <label className={style.errorLabel}></label>
+        </div>
       </div>
       <br />
       <div className={style.inputContainer}>
         <input className={style.inputButton} type="submit" onClick={btnLoginHandler} value={'Log in'} />
       </div>
+  
+
       <Snackbar
         open={open}
         autoHideDuration={6000}

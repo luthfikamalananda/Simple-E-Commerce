@@ -112,9 +112,11 @@ function ResponsiveAppBar() {
                     </div>
                 </div>
             ))}
+            <h4 className='d-flex justify-content-center'>TOTAL: ${Math.floor(cartGlobal.cart.reduce((accumulator,curr) => accumulator + (curr.price*curr.quantity), 0) * 100)/100}</h4>
              <div className="d-flex justify-content-center align-self-center ">
-                <Link to={'/checkout'}><button className='btn btn-danger fs-2 fw-bold'>CHECKOUT NOW</button></Link>
-             </div>
+
+                    <Link to={'/checkout'}><button className='btn btn-danger fs-2 fw-bold'>CHECKOUT NOW</button></Link>
+                  </div>
         </Box>
     );
 
