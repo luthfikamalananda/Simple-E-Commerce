@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Header from '../components/header'
 import './checkout.css'
 import { Padding } from '@mui/icons-material';

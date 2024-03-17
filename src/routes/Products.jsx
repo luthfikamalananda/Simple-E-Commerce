@@ -24,7 +24,7 @@ export default function Products() {
     } 
     console.log(auth.checkLogin());
 
-    fetchProducts();
+    // fetchProducts();
   },[])
 
   const fetchProducts = async () => {

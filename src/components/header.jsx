@@ -8,7 +8,7 @@ import {
 import { useState } from 'react';
 import cart from '../assets/cart_icon.png'
 import styles from './header.module.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
@@ -26,7 +26,6 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Drawer } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
 
 const pages = [
     {
@@ -52,6 +51,9 @@ function ResponsiveAppBar() {
         setAnchorElNav(event.currentTarget);
     };
 
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+      };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
@@ -61,12 +63,18 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
     };
 
+    const handleLogout = () => {
+        handleOpenNavMenu
+        localStorage.removeItem('credential')
+        navigate('/login')
+    }
+
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                   <Typography
+                    <Typography
                         variant="h6"
                         noWrap
                         sx={{
@@ -81,7 +89,7 @@ function ResponsiveAppBar() {
                         component={Link}
                         to={'/products'}
                     >
-                         MKP
+                        MKP
                     </Typography>
 
 
@@ -119,6 +127,9 @@ function ResponsiveAppBar() {
                                     <Typography textAlign="center" component={Link} to={page.link}>{page.name}</Typography>
                                 </MenuItem>
                             ))}
+                            <MenuItem key='LogOut' onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center" component={Link} >LogOut</Typography>
+                            </MenuItem>
                         </Menu>
                     </Box>
                     <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -151,15 +162,25 @@ function ResponsiveAppBar() {
                                 {page.name}
                             </Button>
                         ))}
+                        <Button
+                                key='LogOut'
+                                onClick={handleLogout}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                component={Link} 
+                            >
+                                LogOut
+                            </Button>
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
+
                         <Tooltip title="Open Cart">
-                                <IconButton onClick={toggleDrawer(true)} color='inherit'><ShoppingCartIcon/></IconButton>
-                                <Drawer open={open} onClose={toggleDrawer(false)}>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis reprehenderit sunt optio minima magnam nemo incidunt corrupti. Asperiores ut corporis ad sed vel quae ratione porro molestiae, obcaecati explicabo quam.
-                                </Drawer>
+                            <IconButton onClick={toggleDrawer(true)} color='inherit' ><ShoppingCartIcon /></IconButton>
+                            <Drawer open={open} onClose={toggleDrawer(false)}>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis reprehenderit sunt optio minima magnam nemo incidunt corrupti. Asperiores ut corporis ad sed vel quae ratione porro molestiae, obcaecati explicabo quam.
+                            </Drawer>
                         </Tooltip>
+
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
