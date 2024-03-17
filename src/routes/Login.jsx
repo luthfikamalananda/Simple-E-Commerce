@@ -55,6 +55,7 @@ function Login() {
           password: password
       }))
       navigate("/products");
+      navigate(0)
     } catch (error) {
       console.log('Login GAGAL');
       setOpen(true);
