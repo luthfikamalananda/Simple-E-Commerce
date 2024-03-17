@@ -16,6 +16,12 @@ export default function DetailProduct() {
   const data = useContext(CartContext);
   const { cart } = data // Destruct
 
+  useEffect(() => {
+    if (auth.checkLogin() === false) {
+      navigate('/login')
+    } 
+  },[])
+
   const handleButtonClick = () => {
     const arrToStorage = {
       id:productData.id,

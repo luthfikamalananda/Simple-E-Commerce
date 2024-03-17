@@ -3,11 +3,11 @@ import { createContext, useState } from "react";
 export const CartContext = createContext()
 
 export default function CartProvider({children}) {
-    const [cart, setCart] = useState    (() => {
+    const [cart, setCart] = useState (() => {
         const data = localStorage.getItem('cart');
         if(!data) return [];
         return JSON.parse(data);
-      });
+      },[]);
 
     const addToCart = (obj) => {
         const found = cart.findIndex(element => element.id === obj.id)

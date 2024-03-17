@@ -4,15 +4,28 @@ import ReactImg from '../assets/react.png';
 import './products.css';
 import { useContext, useEffect, useState } from "react";
 import { Rating } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartProvider";
+import { AuthContext } from "../context/AuthProvider";
 
 export default function Products() {
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
-  // Context
-  const data = useContext(CartContext)
+    // Context
+    const data = useContext(CartContext)
+    const auth = useContext(AuthContext)
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth.checkLogin() === false) {
+      navigate('/login')
+    } 
+    console.log(auth.checkLogin());
+
+    fetchProducts();
+  },[])
 
   const fetchProducts = async () => {
     try {
@@ -25,10 +38,6 @@ export default function Products() {
     }
     setIsLoading(false)
   }
-
-  useEffect(() => {
-    fetchProducts();
-  }, [])
 
   const btnHandleClick = (id) => {
     const findIdx = products.findIndex((element) => element.id === id)

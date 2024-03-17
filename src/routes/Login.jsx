@@ -1,4 +1,4 @@
-import { useState, Fragment, useContext } from 'react'
+import { useState, Fragment, useContext, useEffect } from 'react'
 import reactLogo from '../assets/react.svg'
 import style from './login.module.css';
 
@@ -13,11 +13,19 @@ function Login() {
 
   const [open, setOpen] = useState(false);
 
+  const auth = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (auth.checkLogin() === true) {
+      navigate('/products')
+    } 
+  },[])
 
   const actionSnackbar = (
     <Fragment>
@@ -46,9 +54,7 @@ function Login() {
           username: username,
           password: password
       }))
-      setToken(resultJSON.token);
       navigate("/products");
-
     } catch (error) {
       console.log('Login GAGAL');
       setOpen(true);
