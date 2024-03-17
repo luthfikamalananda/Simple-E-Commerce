@@ -23,6 +23,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import reactImg from '../assets/react.png'
 import { useTheme } from '@emotion/react';
 import { CartContext } from '../context/CartProvider';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const pages = [
     {
@@ -38,8 +39,8 @@ const pages = [
 
 
 function ResponsiveAppBar() {
-    const data = useContext(CartContext).cart
-    console.log(data);
+    const cartGlobal = useContext(CartContext)
+
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -72,9 +73,21 @@ function ResponsiveAppBar() {
         navigate('/login')
     }
 
+    const btnAddQuantity = (id) => {
+        cartGlobal.addQuantityCart(id);
+    }
+
+    const btnSubtractQuantity = (id) => {
+        cartGlobal.subtractQuantityCart(id);
+    }
+
+    const btnRemoveProduct = (id) => {
+        cartGlobal.removeFromCart(id);
+    }
+
     const DrawerList = (
-        <Box sx={{ width: { xl: 600, lg: 600, md: 500, sm: 400, xs: 250 } }} role="presentation" onClick={toggleDrawer(false)}>
-            {data.map((data) => (
+        <Box sx={{ width: { xl: 600, lg: 600, md: 500, sm: 400, xs: 250 } }} role="presentation">
+            {cartGlobal.cart.map((data) => (
                 <div className="row mb-3 mb-4 p-4 bt-2 border-bottom ">
                     <div className="col-auto align-self-center">
                         <img src={data.image} style={{width:'70px', height:'100px', objectFit:'contain'}} alt="product image" className='img-fluid productCart-image' />
@@ -84,25 +97,24 @@ function ResponsiveAppBar() {
                         <h3 className='productCart-text'>${data.price * data.quantity} </h3>
                         <div className="row">
                             <div className="col-auto">
-                                -
+                            {data.quantity > 1 ? <button className='btn btn-light' onClick={() => btnSubtractQuantity(data.id)}>-</button> : ''}
                             </div>
-                            <div className="col-auto">
+                            <div className="col-auto fw-bold align-self-center justify-content-center" style={{fontSize:'18px'}}>
                                 {data.quantity}
                             </div>
                             <div className="col-auto">
-                                +
+                                <button className='btn btn-light' onClick={() => btnAddQuantity(data.id)}>+</button>
                             </div>
                         </div>
                     </div>
-                    <div className="col-auto text-center">
-                        <h2>X</h2>
+                    <div className="col-auto text-center align-self-center">
+                        <button className='btn btn-danger p-2' onClick={() => btnRemoveProduct(data.id)}><DeleteForeverIcon/></button>    
                     </div>
                 </div>
             ))}
-                       <Divider />
-
- 
-
+             <div className="d-flex justify-content-center align-self-center ">
+                <Link to={'/checkout'}><button className='btn btn-danger fs-2 fw-bold'>CHECKOUT NOW</button></Link>
+             </div>
         </Box>
     );
 
@@ -174,7 +186,6 @@ function ResponsiveAppBar() {
                         variant="h5"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
