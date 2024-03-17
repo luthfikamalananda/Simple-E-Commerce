@@ -1,16 +1,15 @@
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useContext } from 'react'
 import reactLogo from '../assets/react.svg'
 import style from './login.module.css';
 
 import Alert from '@mui/material/Alert';
-import { Button, Snackbar } from '@mui/material';
+import { Button, Snackbar, useColorScheme } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthProvider';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-  const [token, setToken] = useState('');
 
   const [open, setOpen] = useState(false);
 
@@ -28,7 +27,7 @@ function Login() {
     </Fragment>
   );
 
-  const onButtonClick = async () => {
+  const btnLoginHandler = async () => {
     try {
       const consumeLoginAPI = await fetch('https://fakestoreapi.com/auth/login', {
         headers: {
@@ -43,9 +42,12 @@ function Login() {
       const resultJSON = await consumeLoginAPI.json();
       console.log(resultJSON.token);
       console.log('Login Berhasil');
-
+        localStorage.setItem('credential', JSON.stringify({
+          username: username,
+          password: password
+      }))
       setToken(resultJSON.token);
-      navigate("/root");
+      navigate("/products");
 
     } catch (error) {
       console.log('Login GAGAL');
@@ -85,14 +87,14 @@ function Login() {
       </div>
       <br />
       <div className={style.inputContainer}>
-        <input className={style.inputButton} type="submit" onClick={onButtonClick} value={'Log in'} />
+        <input className={style.inputButton} type="submit" onClick={btnLoginHandler} value={'Log in'} />
       </div>
       <Snackbar
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
         action={actionSnackbar}
-        anchorOrigin={{vertical: 'top', horizontal: 'center' }}>
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
         <Alert severity="error">Credential not found.</Alert>
       </Snackbar>
     </div>

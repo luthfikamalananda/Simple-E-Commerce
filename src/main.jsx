@@ -13,6 +13,7 @@ import Products from './routes/Products.jsx';
 import DetailProduct from './routes/DetailProduct.jsx';
 import Checkout from './routes/Checkout.jsx';
 import CartProvider from './context/CartProvider.jsx';
+import AuthProvider from './context/AuthProvider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -41,8 +42,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <CartProvider>
-      <RouterProvider router={router}/>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <RouterProvider router={router}/>
+      </CartProvider>
+    </AuthProvider>
   </React.StrictMode>,
 )
