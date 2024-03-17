@@ -29,7 +29,7 @@ export default function CartProvider({children}) {
           localStorage.setItem('cart',JSON.stringify(newArr));
           setCart(newArr)
         }
-      }
+    }
 
     const removeFromCart = (id) => {
         const found = cart.findIndex(element => element.id === id)
@@ -39,10 +39,48 @@ export default function CartProvider({children}) {
         localStorage.setItem('cart',JSON.stringify(newArr))
     }
 
+    const addQuantityCart = (id) => {
+      const found = cart.findIndex(element => element.id === id)
+      console.log(found);
+      if (found > -1 ) {
+        const newArr = cart.map((data, index) => {
+          if (found === index) {
+            return {
+              ...data,
+              quantity: data.quantity + 1
+            }
+          }
+          return data;
+        })
+        setCart(newArr);
+        localStorage.setItem('cart',JSON.stringify(newArr));
+      }
+  }
+
+  const subtractQuantityCart = (id) => {
+    const found = cart.findIndex(element => element.id === id)
+    console.log(found);
+    if (found > -1 ) {
+      const newArr = cart.map((data, index) => {
+        if (found === index) {
+          return {
+            ...data,
+            quantity: data.quantity - 1
+          }
+        }
+        return data;
+      })
+      setCart(newArr);
+      localStorage.setItem('cart',JSON.stringify(newArr));
+    }
+}
+
     const value = {
         cart,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        addQuantityCart,
+        subtractQuantityCart
     };
     
     return(

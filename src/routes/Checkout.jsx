@@ -13,6 +13,14 @@ export default function Checkout() {
         data.removeFromCart(id);
     }
 
+    const btnAddQuantityHandler = (id) => {
+        data.addQuantityCart(id)
+    }
+
+    const btnSubtractQuantityHandler = (id) => {
+        data.subtractQuantityCart(id)
+    }
+
     return (
         <>
             <Header />
@@ -35,7 +43,7 @@ export default function Checkout() {
                                     <th scope="row"><img src={data.image} alt="Product Image" className='product-images'/></th>
                                     <td>{data.title}</td>
                                     <td className='text-center'>{data.price}</td>
-                                    <td className='text-center'><button onClick={console.log('-')}>-</button> {data.quantity} <button>+</button></td>
+                                    <td className='text-center'>{data.quantity > 1 ? <button onClick={() => {btnSubtractQuantityHandler(data.id)}}>-</button> : ''} {data.quantity} <button onClick={() => {btnAddQuantityHandler(data.id)}}>+</button></td>
                                     <td className='text-center'>{data.quantity * data.price}</td>
                                     <td className='text-center' onClick={() => btnRemoveHandler(data.id)}>X</td>
                                 </tr>
