@@ -1,13 +1,8 @@
 import '@coreui/coreui/dist/css/coreui.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './header.css'
 
-import {
-    CAlert, CButton, CCloseButton, CCollapse, CContainer, CDropdown, CDropdownDivider, CDropdownItem, CDropdownMenu, CDropdownToggle,
-    CForm, CFormInput, CNavItem, CNavLink, CNavbar, CNavbarBrand, CNavbarNav, CNavbarToggler, COffcanvas, COffcanvasBody, COffcanvasHeader, COffcanvasTitle
-} from '@coreui/react';
-import { useState } from 'react';
-import cart from '../assets/cart_icon.png'
-import styles from './header.module.css'
+import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import * as React from 'react';
@@ -19,13 +14,15 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Drawer } from '@mui/material';
+import { Card, CardContent, CardMedia, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import reactImg from '../assets/react.png'
+import { useTheme } from '@emotion/react';
+import { CartContext } from '../context/CartProvider';
 
 const pages = [
     {
@@ -38,10 +35,16 @@ const pages = [
     }
 ];
 
+
+
 function ResponsiveAppBar() {
+    const data = useContext(CartContext).cart
+    console.log(data);
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
+
     const [open, setOpen] = useState(false);
+    const theme = useTheme();
 
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
@@ -53,7 +56,7 @@ function ResponsiveAppBar() {
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
-      };
+    };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
@@ -68,6 +71,40 @@ function ResponsiveAppBar() {
         localStorage.removeItem('credential')
         navigate('/login')
     }
+
+    const DrawerList = (
+        <Box sx={{ width: { xl: 600, lg: 600, md: 500, sm: 400, xs: 250 } }} role="presentation" onClick={toggleDrawer(false)}>
+            {data.map((data) => (
+                <div className="row mb-3 mb-4 p-4 bt-2 border-bottom ">
+                    <div className="col-auto align-self-center">
+                        <img src={data.image} style={{width:'70px', height:'100px', objectFit:'contain'}} alt="product image" className='img-fluid productCart-image' />
+                    </div>
+                    <div className="col">
+                        <h2 className='productCart-text'>{data.title}</h2>
+                        <h3 className='productCart-text'>${data.price * data.quantity} </h3>
+                        <div className="row">
+                            <div className="col-auto">
+                                -
+                            </div>
+                            <div className="col-auto">
+                                {data.quantity}
+                            </div>
+                            <div className="col-auto">
+                                +
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-auto text-center">
+                        <h2>X</h2>
+                    </div>
+                </div>
+            ))}
+                       <Divider />
+
+ 
+
+        </Box>
+    );
 
     return (
         <AppBar position="static">
@@ -128,7 +165,7 @@ function ResponsiveAppBar() {
                                 </MenuItem>
                             ))}
                             <MenuItem key='LogOut' onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center" component={Link} >LogOut</Typography>
+                                <Typography textAlign="center" component={Link} >LogOut</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>
@@ -163,13 +200,13 @@ function ResponsiveAppBar() {
                             </Button>
                         ))}
                         <Button
-                                key='LogOut'
-                                onClick={handleLogout}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                                component={Link} 
-                            >
-                                LogOut
-                            </Button>
+                            key='LogOut'
+                            onClick={handleLogout}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                            component={Link}
+                        >
+                            LogOut
+                        </Button>
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
@@ -177,7 +214,7 @@ function ResponsiveAppBar() {
                         <Tooltip title="Open Cart">
                             <IconButton onClick={toggleDrawer(true)} color='inherit' ><ShoppingCartIcon /></IconButton>
                             <Drawer open={open} onClose={toggleDrawer(false)}>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis reprehenderit sunt optio minima magnam nemo incidunt corrupti. Asperiores ut corporis ad sed vel quae ratione porro molestiae, obcaecati explicabo quam.
+                                {DrawerList}
                             </Drawer>
                         </Tooltip>
 

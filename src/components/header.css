@@ -1,0 +1,24 @@
+#navbar{
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+#cart_icon{
+    width: 20px;
+    margin-left: 5px;
+    margin-bottom: 4px;
+}
+
+.productCart-text{
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .productCart-image{
+        width: 60px!important;
+        height: 90px!important;
+    }
+    .productCart-text{
+        font-size: 15px;
+    }
+  }
