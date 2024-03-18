@@ -138,7 +138,7 @@ function ResponsiveAppBar() {
                         component={Link}
                         to={'/products'}
                     >
-                        FSA Store
+                        E-Commerce
                     </Typography>
 
 
@@ -197,7 +197,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        FSA
+                        E-Comm
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
