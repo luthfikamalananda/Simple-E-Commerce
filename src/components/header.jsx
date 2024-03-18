@@ -140,7 +140,7 @@ function ResponsiveAppBar() {
                         component={Link}
                         to={'/products'}
                     >
-                        MKP
+                        FSA Store
                     </Typography>
 
 
@@ -175,11 +175,11 @@ function ResponsiveAppBar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center" component={Link} to={page.link}>{page.name}</Typography>
+                                    <Typography textAlign="center" sx={{color: 'black', display: 'block', textDecoration:'none',}} component={Link} to={page.link}>{page.name}</Typography>
                                 </MenuItem>
                             ))}
                             <MenuItem key='LogOut' onClick={handleCloseNavMenu}>
-                                <Typography textAlign="center" component={Link} >LogOut</Typography>
+                                <Typography textAlign="center" component={Link} sx={{color: 'black', display: 'block', textDecoration:'none',}} >LogOut</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>
@@ -199,14 +199,14 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        FSA
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
                                 key={page.name}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                sx={{ my: 2, color: 'white', display: 'block', textDecoration:'none',}}
                                 component={Link} to={page.link}
                             >
                                 {page.name}
