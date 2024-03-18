@@ -10,8 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@coreui/coreui": "^4.3.0",
-    "@coreui/react": "^4.11.1",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.12",

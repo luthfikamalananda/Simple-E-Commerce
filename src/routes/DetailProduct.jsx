@@ -1,6 +1,4 @@
-import { CButton, CCard, CCardBody, CCardGroup, CCardImage, CCardText, CCardTitle, CCarousel, CCarouselItem, CCol, CImage, CRow } from "@coreui/react";
 import Header from "../components/header";
-import ReactImg from '../assets/react.png';
 import './detailproduct.css';
 import { useContext, useEffect, useState } from "react";
 import { Alert, Rating, Snackbar } from "@mui/material";

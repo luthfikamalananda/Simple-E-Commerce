@@ -7,10 +7,6 @@ main{
     display: block;
 }
 
-.carousel{
-    height: 50px;
-}
-
 .carousel-img{
     height: 500px!important;
     object-fit: cover;
@@ -83,8 +79,18 @@ main{
     width: 100%;
 }
 
+
+
 @media only screen and (max-width: 1024px) {
     .ListProduct{
         padding: 0 50px 20px;
+    }
+  }
+
+  
+@media only screen and (max-width: 600px) {
+    .carousel-img{
+        height: 250px!important;
+        object-fit: cover;
     }
   }
