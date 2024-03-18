@@ -27,7 +27,7 @@ export default function DetailProduct() {
 
   useEffect(() => {
     if (auth.checkLogin() === false) {
-      navigate('/login')
+      navigate('/')
     }
   }, [])
 

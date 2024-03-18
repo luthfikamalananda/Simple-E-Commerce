@@ -18,12 +18,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Card, CardContent, CardMedia, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Drawer } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import reactImg from '../assets/react.png'
 import { useTheme } from '@emotion/react';
 import { CartContext } from '../context/CartProvider';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const pages = [
     {
@@ -70,7 +68,7 @@ function ResponsiveAppBar() {
     const handleLogout = () => {
         handleOpenNavMenu
         localStorage.removeItem('credential')
-        navigate('/login')
+        navigate('/')
     }
 
     const btnAddQuantity = (id) => {
@@ -88,7 +86,7 @@ function ResponsiveAppBar() {
     const DrawerList = (
         <Box sx={{ width: { xl: 600, lg: 600, md: 500, sm: 400, xs: 250 } }} role="presentation">
             {cartGlobal.cart.map((data) => (
-                <div className="row mb-3 mb-4 p-4 bt-2 border-bottom cart-container">
+                <div className="row mb-3 mb-4 p-4 bt-2 border-bottom cart-container" key={data.id}>
                     <div className="col-auto align-self-center">
                         <img src={data.image} style={{width:'70px', height:'100px', objectFit:'contain'}} alt="product image" className='img-fluid productCart-image' />
                     </div>

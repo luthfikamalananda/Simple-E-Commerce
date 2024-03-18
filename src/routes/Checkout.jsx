@@ -40,7 +40,7 @@ export default function Checkout() {
 
     useEffect(() => {
         if (auth.checkLogin() === false) {
-            navigate('/login')
+            navigate('/')
         }
     }, [])
 

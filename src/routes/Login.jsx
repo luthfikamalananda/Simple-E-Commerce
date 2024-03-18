@@ -1,6 +1,6 @@
 import { useState, Fragment, useContext, useEffect } from 'react'
 import reactLogo from '../assets/react.svg'
-import style from './login.module.css';
+import './login.css';
 
 
 import Alert from '@mui/material/Alert';
@@ -25,8 +25,8 @@ function Login() {
   useEffect(() => {
     if (auth.checkLogin() === true) {
       navigate('/products')
-    } 
-  },[])
+    }
+  }, [])
 
   const actionSnackbar = (
     <Fragment>
@@ -51,9 +51,9 @@ function Login() {
       const resultJSON = await consumeLoginAPI.json();
       console.log(resultJSON.token);
       console.log('Login Berhasil');
-        localStorage.setItem('credential', JSON.stringify({
-          username: username,
-          password: password
+      localStorage.setItem('credential', JSON.stringify({
+        username: username,
+        password: password
       }))
       navigate("/products");
       navigate(0)
@@ -64,46 +64,45 @@ function Login() {
   }
 
   return (
-    
-    <div className={style.mainContainer}>
-      
+
+    <main className='container mainContainer m-0 w-100'>
       <div>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className={style.logo} alt="React logo" />
-        </a>
+          <img src={reactLogo} classNamelogo alt="React logo" />
       </div>
-      <div className={style.titleContainer}>
+      <div className='titleContainer'>
         <div>Login</div>
       </div>
       <br />
-      <div className={`${style.inputContainer} row justify-content-center align-self-center`}>
+      <div className={`inputContainer row justify-content-center align-self-center`}>
         <div className="col">
-        <input
-          value={username}
-          placeholder="Enter your username here"
-          onChange={(ev) => setUsername(ev.target.value)}
-          className={`${style.inputBox} from-control form-control-lg`}
-        />
-        <label className={style.errorLabel}></label>
+          <input
+            value={username}
+            placeholder="Enter your username here"
+            onChange={(ev) => setUsername(ev.target.value)}
+            className={`inputBox from-control form-control-lg`}
+          />
+          <label ></label>
         </div>
       </div>
       <br />
-      <div className={`${style.inputContainer} row justify-content-center align-self-center`}>
+      <div className={`inputContainer row justify-content-center align-self-center`}>
         <div className="col">
-        <input
-          value={password}
-          placeholder="Enter your password here"
-          onChange={(ev) => setPassword(ev.target.value)}
-          className={`${style.inputBox} from-control form-control-lg `}
-        />
-        <label className={style.errorLabel}></label>
+          <input
+            value={password}
+            placeholder="Enter your password here"
+            onChange={(ev) => setPassword(ev.target.value)}
+            className={`inputBox from-control form-control-lg `}
+            type='password'
+          />
+          <label></label>
         </div>
       </div>
       <br />
-      <div className={style.inputContainer}>
-        <input className={style.inputButton} type="submit" onClick={btnLoginHandler} value={'Log in'} />
+      <div classNameinputContainer>
+        <input className='inputButton' type="submit" onClick={btnLoginHandler} value={'Log in'} />
       </div>
-  
+
+
 
       <Snackbar
         open={open}
@@ -113,7 +112,7 @@ function Login() {
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
         <Alert severity="error">Credential not found.</Alert>
       </Snackbar>
-    </div>
+    </main>
 
   )
 }

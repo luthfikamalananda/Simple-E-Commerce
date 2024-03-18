@@ -14,6 +14,7 @@ import DetailProduct from './routes/DetailProduct.jsx';
 import Checkout from './routes/Checkout.jsx';
 import CartProvider from './context/CartProvider.jsx';
 import AuthProvider from './context/AuthProvider.jsx';
+import ErrorPage from './routes/ErrorPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,12 +32,16 @@ const router = createBrowserRouter([
     }
   },
   {
-    path: "login",
+    path: "/",
     element: <Login/>
   },
   {
     path: "checkout",
     element: <Checkout/>
+  },
+  {
+    path: "/",
+    errorElement: <ErrorPage/>
   }
 ])
 

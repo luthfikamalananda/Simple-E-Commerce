@@ -27,7 +27,7 @@ export default function Products() {
 
   useEffect(() => {
     if (auth.checkLogin() === false) {
-      navigate('/login')
+      navigate('/')
     } 
     console.log(auth.checkLogin());
 
