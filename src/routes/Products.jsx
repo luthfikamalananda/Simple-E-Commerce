@@ -2,15 +2,22 @@ import { CButton, CCard, CCardBody, CCardGroup, CCardImage, CCardText, CCardTitl
 import Header from "../components/header";
 import ReactImg from '../assets/react.png';
 import './products.css';
-import { useContext, useEffect, useState } from "react";
-import { Rating } from "@mui/material";
+import { Fragment, useContext, useEffect, useState } from "react";
+import { Alert, Rating, Snackbar } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartProvider";
 import { AuthContext } from "../context/AuthProvider";
+import { Button } from "@coreui/coreui";
 
 export default function Products() {
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [open, setOpen] = useState(false)
+
+  // Snackbar
+  const handleClose = () => {
+    setOpen(false);
+  };
 
     // Context
     const data = useContext(CartContext)
@@ -50,6 +57,7 @@ export default function Products() {
     }
 
     data.addToCart(arrToStorage)
+    setOpen(true)
   }
 
 
@@ -100,6 +108,13 @@ export default function Products() {
             ))}
           </div>
         </div>
+        <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+        <Alert severity="success">Added to Cart</Alert>
+      </Snackbar>
       </main>
       <footer></footer>
     </>

@@ -5,12 +5,17 @@ import { Padding } from '@mui/icons-material';
 import { CartContext } from '../context/CartProvider';
 import { AuthContext } from '../context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
-import { useMediaQuery } from '@mui/material';
+import { Alert, Snackbar, useMediaQuery } from '@mui/material';
 
 export default function Checkout() {
     const navigate = useNavigate();
     const isDesktop = useMediaQuery('(max-width: 500px)');
     console.log(isDesktop);
+
+    const [open, setOpen] = useState(false)
+    const handleClose = () => {
+        setOpen(false)
+    }
 
     // Context
     const data = useContext(CartContext);
@@ -102,6 +107,13 @@ export default function Checkout() {
                    <button className='btn btn-danger fs-2 fw-bold' onClick={btnCheckoutHandler}>CHECKOUT NOW</button>
                   </div>
                 </div>
+                <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+        <Alert severity="success">Checkout Success</Alert>
+      </Snackbar>
             </main>
 
         </>
