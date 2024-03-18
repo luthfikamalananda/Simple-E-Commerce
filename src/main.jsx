@@ -19,11 +19,13 @@ import ErrorPage from './routes/ErrorPage.jsx';
 const router = createBrowserRouter([
   {
     path: "products",
+    errorElement: <ErrorPage/>,
     element: <Products/>
   },
   {
     path: "products/:productId",
     element: <DetailProduct/>,
+    errorElement: <ErrorPage/>,
     loader:  async ({params}) => {
       const getData = await fetch(`https://fakestoreapi.com/products/${params.productId}`);
       const fetchedData = await getData.json()
@@ -33,16 +35,14 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
+    errorElement: <ErrorPage/>,
     element: <Login/>
   },
   {
     path: "checkout",
+    errorElement: <ErrorPage/>,
     element: <Checkout/>
   },
-  {
-    path: "/",
-    errorElement: <ErrorPage/>
-  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
